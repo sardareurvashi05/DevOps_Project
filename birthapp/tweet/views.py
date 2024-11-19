@@ -1,3 +1,5 @@
+#tweet/views.py
+
 from django.shortcuts import render
 from .models import Tweet
 from .forms import TweetForm, UserRegistrationForm
@@ -10,7 +12,11 @@ from django.conf import settings
 import logging 
 
 logger = logging. getLogger(__name__)
+ 
+from django.shortcuts import render
+from django.contrib.auth.forms import AuthenticationForm
 
+   
 def update_mail_status(tweets):
     """ update mail status """
     currentday = datetime.date.today() 
@@ -42,20 +48,20 @@ def index(request):
 
 def tweet_list(request):
     if request.user.is_authenticated:
-        tweets = Tweet.objects.filter(user = request.user ) 
+        tweets = Tweet.objects.filter(user=request.user)
         if tweets:
             update_mail_status(tweets)
             username = tweets[0].user.username
-            remind_tweets = [] 
+            remind_tweets = []
             for tweet in tweets:
                 if tweet.date_of_birth and remind_birth_day(tweet.date_of_birth):
                     remind_tweets.append(tweet)
-            return render(request, 'tweet_list.html', {'tweets': tweets, 'remind_tweets' : remind_tweets, 'username':username})
+            return render(request, 'tweet_list.html', {'tweets': tweets, 'remind_tweets': remind_tweets, 'username': username})
         else:
-            return render(request, 'tweet_list.html', {'tweets': tweets, 'remind_tweets' : '', 'username':request.user})
+            return render(request, 'tweet_list.html', {'tweets': tweets, 'remind_tweets': '', 'username': request.user})
     else:
-        # Redirect anonymous users to login
         return redirect('login')
+
 
 @login_required
 def tweet_create(request):
@@ -95,14 +101,15 @@ def tweet_delete(request, tweet_id):
 
 
 def register(request):
-    if request.method=="POST":
+    if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password1'])
             user.save()
-            login(request,user)
-            return redirect('tweet_list')
+            login(request, user)  # Log the user in immediately after saving
+            return redirect('login')  # Redirect to login page instead of tweet_list
     else:
         form = UserRegistrationForm()
-    return render(request,'registration/register.html',{'form': form})
+    
+    return render(request, 'registration/register.html', {'form': form})

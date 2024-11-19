@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-&tk+)0t4lry0arzan1l@-d#u_o22x510!n0+dzqwgt7wubnfde
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['143718d70d8746a5bbd7360bcf8cad90.vfs.cloud9.eu-west-1.amazonaws.com',
+                '172.31.92.251']
 
 
 # Application definition
@@ -140,4 +141,15 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'skamlesh03@gmail.com'
 EMAIL_HOST_PASSWORD = 'hqft odwt pagl npny'
+ALLOWED_HOSTS = [
+    '143718d70d8746a5bbd7360bcf8cad90.vfs.cloud9.eu-west-1.amazonaws.com',
+    '172.31.92.251',# Add 127.0.0.1 for local development
+    'birthappdemoappenv.eba-aemvtbpj.us-east-1.elasticbeanstalk.com'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://143718d70d8746a5bbd7360bcf8cad90.vfs.cloud9.eu-west-1.amazonaws.com',
+    'http://143718d70d8746a5bbd7360bcf8cad90.vfs.cloud9.eu-west-1.amazonaws.com',  # If you also need to support HTTP
+]
+
 
