@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\demo",
+    "\\demo\\birthapp",
+    "\\demo\\birthapp\\static",
+    "\\demo\\birthapp\\templates",
+    "\\demo\\birthapp\\templates\\registration",
+    "\\demo\\birthapp\\tweet",
+    "\\demo\\birthapp\\tweet\\migrations",
+    "\\demo\\birthapp\\tweet\\templates"
+  ],
+  "SelectedNode": "\\demo\\birthapp\\templates\\layout.html",
+  "PreviewInSolutionExplorer": false
+}
